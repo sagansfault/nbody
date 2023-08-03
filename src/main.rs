@@ -3,13 +3,12 @@
 use egui::plot::{Plot, Points};
 
 const G: f64 = 6.67e-11_f64;
-const DELTA_TIME: f64 = 60.0 * 60.0;
+const DELTA_TIME: f64 = 60.0 * 60.0 * 24.0;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let body_sim = BodySim::new([
         Body::new(2.0e30, (0.0, 0.0), (0.0, 0.0)),
-        Body::new(6.0e24, (0.0, 1.5e11), (30_000.0, 0.0)),
-        Body::new(7.3e22, (0.0, 1.5e11 + 3.6e8), (30_000.0 + 1_000.0, 0.0))
+        Body::new(6.0e24, (0.0, 1.5e11), (30_000.0, 0.0))
     ]);
 
     let options = eframe::NativeOptions {
@@ -26,12 +25,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 
 struct BodySim {
-    bodies: [Body; 3]
+    bodies: [Body; 2]
 }
 
 impl BodySim {
 
-    fn new(bodies: [Body; 3]) -> BodySim {
+    fn new(bodies: [Body; 2]) -> BodySim {
         BodySim { bodies }
     }
 
